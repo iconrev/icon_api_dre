@@ -1,0 +1,7 @@
+{
+  "file": "base64_encoded_excel_file_here",
+  "filename": "dre_empresa_abc.xlsx",
+  "useAgent": true,
+  "empresaId": "uuid-of-company",
+  "usuarioId": "uuid-of-user"
+}

@@ -1,0 +1,45 @@
+{
+  "name": "icon-api-dre",
+  "version": "1.0.0",
+  "description": "API isolada para processamento de DRE com LangChain - Deploy na Railway",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "jest"
+  },
+  "keywords": [
+    "dre",
+    "langchain",
+    "iconplus",
+    "financial"
+  ],
+  "author": "IconPlus Team",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.27.0",
+    "@langchain/anthropic": "^1.5.1",
+    "@langchain/cohere": "^1.1.0",
+    "@langchain/core": "^1.2.1",
+    "@langchain/openai": "^1.5.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "exceljs": "^3.4.0",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "langchain": "^1.5.2",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.9.3",
+    "pdf-parse": "^1.1.1",
+    "sequelize": "^3.30.0",
+    "swagger-jsdoc": "^6.3.0",
+    "swagger-ui-express": "^5.0.1",
+    "uuid": "^14.0.1",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "jest": "^25.0.0",
+    "nodemon": "^3.1.0"
+  }
+}
