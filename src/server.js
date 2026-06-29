@@ -12,7 +12,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpecs = require('./config/swagger');
+const { getSpecs } = require('./config/swagger');
 
 // Import config
 const config = require('./config/config');
@@ -23,6 +23,9 @@ const healthRoutes = require('./routes/health');
 
 // Initialize Express
 const app = express();
+
+// Trust proxy (Railway/NGINX) so req.protocol reflects the public scheme
+app.enable('trust proxy');
 
 // Middleware
 app.use(helmet()); // Security headers
@@ -40,8 +43,15 @@ app.use('/health', healthRoutes);
 // API Routes
 app.use('/api/dre', dreRoutes);
 
-// Swagger UI
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
+// Swagger UI + spec dinâmico
+// O spec é servido em /api-docs/swagger.json para refletir o host/protocolo da requisição
+app.get('/api-docs/swagger.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.json(getSpecs(req));
+});
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(null, {
+  swaggerUrl: '/api-docs/swagger.json'
+}));
 
 /**
  * @swagger
